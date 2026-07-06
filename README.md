@@ -34,14 +34,16 @@ O build estático é gerado em `dist/` e pode ser publicado em Vercel, Netlify o
 
 **3. Modelagem de indicadores**
 - 3.1 Indicadores Sociais
-  - 3.1.1 Ficha NPS de satisfação (escala 0–10)
-  - 3.1.2 Taxa de retenção escolar
+  - 3.1.1 Formulário de Pesquisa NPS (Social)
+  - 3.1.2 Ficha Técnica do Indicador NPS (Social)
+  - 3.1.3 Taxa de retenção escolar
 - 3.2 Indicadores Esportivos
   - 3.2.1 Ficha técnica diária do aluno (evolução técnica/comportamental)
   - 3.2.2 % Presença e pontualidade nos treinos
 - 3.3 Indicadores de Engajamento Familiar
-  - 3.3.1 NPS Familiar (formulário periódico)
-  - 3.3.2 Protocolo da reunião semestral de acompanhamento
+  - 3.3.1 Formulário de Pesquisa NPS Familiar
+  - 3.3.2 Ficha Técnica do Indicador NPS Familiar
+  - 3.3.3 Protocolo da reunião semestral de acompanhamento
 - 3.4 Fichas técnicas dos indicadores (documentação completa de cada ind.)
 
 **4. Sistema de acompanhamento**

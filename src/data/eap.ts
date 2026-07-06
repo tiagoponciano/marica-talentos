@@ -73,12 +73,18 @@ export const eapRoot: EapNode = {
           children: [
             {
               code: "3.1.1",
-              name: "Ficha NPS de satisfação (escala 0–10)",
+              name: "Formulário de Pesquisa NPS (Social)",
               description:
-                "Formulário de satisfação com escala de 0 a 10. Promotores (8–10), neutros (6–7) e detratores (0–5). Cálculo: % promotores − % detratores.",
+                'Instrumento de coleta aplicado periodicamente contendo a pergunta padrão do NPS ("Em uma escala de 0 a 10, o quanto você recomendaria o programa Marica Talentos?") acompanhada de perguntas complementares de atributos: percepção de melhora na frequência/rendimento escolar do jovem, percepção de redução do tempo ocioso e exposição a situações de risco, satisfação geral com estrutura e treinadores, campo aberto para comentários.',
             },
             {
               code: "3.1.2",
+              name: "Ficha Técnica do Indicador NPS (Social)",
+              description:
+                "Definição da forma de cálculo do indicador de satisfação, a partir das respostas coletadas no Formulário de Pesquisa NPS (item 3.1.1). Classificação: Detratores (0–6), Neutros (7–8), Promotores (9–10). Fórmula: % Promotores − % Detratores.",
+            },
+            {
+              code: "3.1.3",
               name: "Taxa de retenção escolar",
               description:
                 "Indicador de permanência e engajamento escolar dos jovens participantes do programa.",
@@ -113,12 +119,18 @@ export const eapRoot: EapNode = {
           children: [
             {
               code: "3.3.1",
-              name: "NPS Familiar (formulário periódico)",
+              name: "Formulário de Pesquisa NPS Familiar",
               description:
-                "Formulário enviado periodicamente às famílias para avaliar como os alunos estão se desenvolvendo em casa e no programa.",
+                "Instrumento de coleta enviado periodicamente às famílias, contendo a pergunta padrão do NPS adaptada ao contexto familiar, acompanhada de perguntas complementares de atributos: melhoria no rendimento escolar do jovem, aumento do vínculo familiar, saúde, redução de comportamentos de risco.",
             },
             {
               code: "3.3.2",
+              name: "Ficha Técnica do Indicador NPS Familiar",
+              description:
+                "Definição da forma de cálculo do indicador de satisfação familiar, a partir das respostas coletadas no Formulário de Pesquisa NPS Familiar (item 3.3.1). Classificação: Detratores (0–6), Neutros (7–8), Promotores (9–10). Fórmula: % Promotores − % Detratores.",
+            },
+            {
+              code: "3.3.3",
               name: "Protocolo da reunião semestral de acompanhamento",
               description:
                 "Roteiro, pauta e registro da reunião semestral de acompanhamento dos jovens com suas famílias.",
