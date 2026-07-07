@@ -246,3 +246,73 @@ export function getNodeType(node: EapNode): string {
   if (node.code.split(".").length === 1) return "Fase (nível 2)";
   return "Entrega / subentrega";
 }
+
+/** Retorna o código do nó e de todos os seus descendentes. */
+export function collectDescendantCodes(node: EapNode): string[] {
+  const codes = [node.code];
+  for (const child of node.children ?? []) {
+    codes.push(...collectDescendantCodes(child));
+  }
+  return codes;
+}
+
+/** Retorna códigos dos ancestrais de um nó (incluindo "0"). */
+export function getAncestorCodes(code: string): string[] {
+  if (code === "0") return [];
+  const parts = code.split(".");
+  const ancestors: string[] = [];
+  for (let i = 1; i < parts.length; i++) {
+    ancestors.push(parts.slice(0, i).join("."));
+  }
+  return ancestors;
+}
+
+/** Verifica se o nó está oculto por conclusão própria ou de um ancestral. */
+export function isNodeHidden(
+  code: string,
+  completedCodes: ReadonlySet<string>,
+): boolean {
+  if (completedCodes.has(code)) return true;
+  return getAncestorCodes(code).some((ancestor) =>
+    completedCodes.has(ancestor),
+  );
+}
+
+/** Retorna cópia da árvore sem nós concluídos (imutável). */
+export function filterTree(
+  node: EapNode,
+  completedCodes: ReadonlySet<string>,
+): EapNode | null {
+  if (completedCodes.has(node.code)) return null;
+
+  const filteredChildren = (node.children ?? [])
+    .map((child) => filterTree(child, completedCodes))
+    .filter((child): child is EapNode => child !== null);
+
+  return {
+    ...node,
+    children:
+      filteredChildren.length > 0 ? filteredChildren : undefined,
+  };
+}
+
+/** Lista nós explicitamente marcados como concluídos, ordenados por código. */
+export function getExplicitlyCompletedNodes(
+  completedCodes: ReadonlySet<string>,
+  root: EapNode = eapRoot,
+): EapNode[] {
+  return flattenNodes(root)
+    .filter((node) => completedCodes.has(node.code))
+    .sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
+}
+
+/** Retorna o ancestral concluído mais próximo que oculta o nó, se houver. */
+export function getBlockingAncestor(
+  code: string,
+  completedCodes: ReadonlySet<string>,
+): string | undefined {
+  return getAncestorCodes(code)
+    .slice()
+    .reverse()
+    .find((ancestor) => completedCodes.has(ancestor));
+}
